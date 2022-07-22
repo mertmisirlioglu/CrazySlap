@@ -11,6 +11,7 @@ public class ServerManager : MonoBehaviourPunCallbacks
 
 
     [SerializeField] private Transform[] spawnPoints;
+    private GameObject myPlayer;
 
     private void Awake()
     {
@@ -63,9 +64,9 @@ public class ServerManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         int index = PhotonNetwork.LocalPlayer.ActorNumber % Constants.MAX_PLAYER;
-        GameObject player = PhotonNetwork.Instantiate("player", spawnPoints[index].position, Quaternion.identity);
+        myPlayer = PhotonNetwork.Instantiate("player", spawnPoints[index].position, Quaternion.identity);
         PhotonNetwork.LocalPlayer.NickName = UnityEngine.Random.Range(0, 500).ToString();
-        CameraManager.Instance.SetFollow(player.transform);
+        CameraManager.Instance.SetFollow(myPlayer);
     }
 
 }

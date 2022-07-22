@@ -9,8 +9,9 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
+        if (Instance != null) {
+            Destroy(gameObject);
+        }else{
             Instance = this;
         }
 
@@ -18,8 +19,9 @@ public class CameraManager : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    public void SetFollow(Transform tr)
+    public void SetFollow(GameObject player)
     {
-        playerFollowCamera.Follow = tr;
+        playerFollowCamera.Follow = player.transform;
+        playerFollowCamera.LookAt = player.transform;
     }
 }
