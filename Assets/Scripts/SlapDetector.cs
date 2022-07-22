@@ -49,7 +49,6 @@ public class SlapDetector : MonoBehaviour
     }
 
     bool AnimatorIsPlaying(string stateName){
-        Debug.Log("heyt: " + _animator.GetCurrentAnimatorStateInfo(0));
         return _animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
     }
 }

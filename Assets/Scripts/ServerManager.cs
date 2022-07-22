@@ -65,8 +65,14 @@ public class ServerManager : MonoBehaviourPunCallbacks
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         int index = PhotonNetwork.LocalPlayer.ActorNumber % Constants.MAX_PLAYER;
         myPlayer = PhotonNetwork.Instantiate("player", spawnPoints[index].position, Quaternion.identity);
+
         PhotonNetwork.LocalPlayer.NickName = UnityEngine.Random.Range(0, 500).ToString();
+        GameManager.Instance.myPlayer = myPlayer.GetComponent<PlayerController>();
         CameraManager.Instance.SetFollow(myPlayer);
     }
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        GameManager.Instance.UpdatePlayerList();
+    }
 }
