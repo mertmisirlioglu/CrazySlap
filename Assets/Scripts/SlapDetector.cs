@@ -9,39 +9,47 @@ public class SlapDetector : MonoBehaviour
 {
     private float slapCooldown = 1;
     private float lastSlapTime = 0;
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if (!other.CompareTag("Player")) return;
-    //
-    //     Debug.Log("slap try " + other.gameObject.GetComponent<PlayerController>().nickname);
-    //
-    //     PlayerController player = other.gameObject.GetComponent<PlayerController>();
-    //     if (player.pV.IsMine)
-    //     {
-    //         return;
-    //     }
-    //
-    //     Debug.Log("slap try 2" + other.gameObject.GetComponent<PlayerController>().nickname);
-    //     Debug.Log("sikerim" + Time.time   );
-    //     float deneme2 = (lastSlapTime + slapCooldown);
-    //     Debug.Log("sikerim" + deneme2   );
-    //     if (Time.time < lastSlapTime + slapCooldown)
-    //     {
-    //         return;
-    //     }
-    //     this.lastSlapTime = Time.time;
-    //     var force = transform.position - other.transform.position;
-    //     force.y = 0;
-    //
-    //     force.Normalize ();
-    //
-    //     Debug.Log("slap to " + other.gameObject.GetComponent<PlayerController>().nickname);
-    //     // Vector3 dir = transform.position;
-    //     // // We then get the opposite (-Vector3) and normalize it
-    //     // dir = -dir.normalized;
-    //
-    //     player.SendSlapRPC(force, other.gameObject.GetComponent<PlayerController>().nickname);
-    //     // And finally we add force in the direction of dir and multiply it by force.
-    //     // This will push back the player
-    // }
+
+    private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponentInParent<Animator>();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+
+        Debug.Log("slap is playing" + AnimatorIsPlaying("Slap"));
+        if (!other.CompareTag("Player") || !AnimatorIsPlaying("Slap")) return;
+        Debug.Log("slap try " + other.gameObject.GetComponent<PlayerController>().nickname);
+
+        PlayerController player = other.gameObject.GetComponent<PlayerController>();
+        if (player.pV.IsMine)
+        {
+            return;
+        }
+
+        if (Time.time < lastSlapTime + slapCooldown)
+        {
+            return;
+        }
+
+        lastSlapTime = Time.time + slapCooldown;
+
+        // this.lastSlapTime = Time.time;
+        var dir = transform.position - other.transform.position;
+
+        dir = -dir.normalized;
+        dir.y = 0;
+
+        player.SendSlapRPC(dir, other.gameObject.GetComponent<PlayerController>().nickname);
+
+    }
+
+    bool AnimatorIsPlaying(string stateName){
+        Debug.Log("heyt: " + _animator.GetCurrentAnimatorStateInfo(0));
+        return _animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
 }

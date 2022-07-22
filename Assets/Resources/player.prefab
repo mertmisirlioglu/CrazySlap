@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 188591948217821220}
   - component: {fileID: 8437404767887183176}
-  - component: {fileID: 1880276180207716102}
   m_Layer: 0
   m_Name: RagdollA01
   m_TagString: Untagged
@@ -147,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 1556623057260215815}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 805568018943709004}
@@ -240,20 +239,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00030573457, y: 0.0021841265, z: 0.0067225173}
     m_Extent: {x: 0.023625348, y: 0.05392513, z: 0.031422477}
   m_DirtyAABB: 0
---- !u!64 &1880276180207716102
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556623057260215815}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &1611876247213021097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,11 +1242,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805568018943709004}
-  - component: {fileID: 79067964852015307}
   - component: {fileID: 304588175949530892}
   - component: {fileID: 8325673900593164902}
-  - component: {fileID: 3257405421773433497}
   - component: {fileID: 785200435193385777}
+  - component: {fileID: 4294435357611942746}
+  - component: {fileID: 703404608352686177}
+  - component: {fileID: 6931907748922373960}
+  - component: {fileID: 6541513816106432892}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1286,28 +1273,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &79067964852015307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658099283998988873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6dfbce32792b443283a434bf39080f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nickname: 
-  speed: 0.05
-  pV: {fileID: 0}
-  slapPower: 1
-  Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.28
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &304588175949530892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,6 +1293,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 785200435193385777}
+  - {fileID: 6541513816106432892}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1351,24 +1317,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!143 &3257405421773433497
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658099283998988873}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 0.11
-  m_Radius: 0.02
-  m_SlopeLimit: 10
-  m_StepOffset: 0.08
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.045, z: 0}
 --- !u!114 &785200435193385777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1385,6 +1333,78 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 0
+--- !u!136 &4294435357611942746
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658099283998988873}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.13
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.05, z: 0}
+--- !u!54 &703404608352686177
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658099283998988873}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &6931907748922373960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658099283998988873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6dfbce32792b443283a434bf39080f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0.3
+  rotationSpeed: 100
+  pV: {fileID: 0}
+  _forceMode: 0
+  slapPower: 3
+  nickname: 
+--- !u!114 &6541513816106432892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658099283998988873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: run
+  - Type: 9
+    SynchronizeType: 0
+    Name: slap
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &7744625962590655060
 GameObject:
   m_ObjectHideFlags: 0
