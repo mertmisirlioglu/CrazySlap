@@ -1380,7 +1380,7 @@ MonoBehaviour:
   rotationSpeed: 200
   isAlive: 1
   pV: {fileID: 0}
-  _forceMode: 0
+  _forceMode: 2
   slapPower: 3
   nickname: 
 --- !u!114 &6541513816106432892

@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using CrazySlap;
 using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
@@ -121,7 +120,6 @@ public class PlayerController : MonoBehaviour
     [PunRPC]
     void slap([CanBeNull] Vector3 dir, [CanBeNull] string target, [CanBeNull] string owner)
     {
-
         if (this.nickname == target && pV.IsMine)
         {
             Debug.Log("slap came :" + dir);
@@ -134,23 +132,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     bool AnimatorIsPlaying(string stateName){
         return anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("DeadZone"))
+        if (other.gameObject.CompareTag("DeadZone"))
         {
-            pV.RPC(nameof(SetStatus), RpcTarget.All, false);
+            pV.RPC(nameof(SetStatus), RpcTarget.All, this.nickname);
         }
     }
 
     [PunRPC]
-    public void SetStatus()
+    public void SetStatus(string nickname)
     {
-        this.isAlive = false;
+        if (this.nickname == nickname)
+        {
+            Debug.Log("Im dead");
+            this.isAlive = false;
+            GameManager.Instance.CheckGameStatus();
+
+            if (pV.IsMine)
+            {
+                UIManager.Instance.Gameplay.SetActive(false);
+                UIManager.Instance.LoseScreen.SetActive(true);
+            }
+        }
+
+
     }
 
 }

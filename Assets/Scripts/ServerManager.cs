@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CrazySlap;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 
 public class ServerManager : MonoBehaviourPunCallbacks
@@ -11,22 +12,22 @@ public class ServerManager : MonoBehaviourPunCallbacks
 
 
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
     private GameObject myPlayer;
+    private string nickname;
 
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Connect();
-        PhotonNetwork.ConnectUsingSettings();
-    }
 
     public void Connect()
     {
+        this.nickname = _textMeshProUGUI.text;
+        UIManager.Instance.MainMenu.SetActive(false);
+        UIManager.Instance.Gameplay.SetActive(true);
+        Debug.Log("my nickname is" + this.nickname);
         // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
         if (PhotonNetwork.IsConnected)
         {
@@ -39,6 +40,20 @@ public class ServerManager : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectUsingSettings();
             // PhotonNetwork.GameVersion = Constants.GAME_VERSION;
         }
+    }
+
+    public void RandomGame()
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
+            PhotonNetwork.JoinRandomRoom();
+        }
+    }
+
+    public void ResetGame()
+    {
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     public override void OnConnectedToMaster()
@@ -66,9 +81,10 @@ public class ServerManager : MonoBehaviourPunCallbacks
         int index = PhotonNetwork.LocalPlayer.ActorNumber % Constants.MAX_PLAYER;
         myPlayer = PhotonNetwork.Instantiate("player", spawnPoints[index].position, Quaternion.identity);
 
-        PhotonNetwork.LocalPlayer.NickName = UnityEngine.Random.Range(0, 500).ToString();
+        PhotonNetwork.LocalPlayer.NickName = this.nickname;
         GameManager.Instance.myPlayer = myPlayer.GetComponent<PlayerController>();
         CameraManager.Instance.SetFollow(myPlayer);
+        GameManager.Instance.UpdatePlayerList();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
