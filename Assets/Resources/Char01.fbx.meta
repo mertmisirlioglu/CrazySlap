@@ -12,7 +12,12 @@ ModelImporter:
   - first:
       74: 7926679387659306408
     second: ANIM_Idle01
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: 7ea87b95954e545fcb19ee874cb6bfe2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -184,7 +189,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

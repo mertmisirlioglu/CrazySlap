@@ -172,7 +172,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: 3a2a51c72e07144d191a3d08fc11e2df, type: 3}
+  - {fileID: 2100000, guid: 7ea87b95954e545fcb19ee874cb6bfe2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -714,7 +714,7 @@ Transform:
   m_GameObject: {fileID: 3516621192223836771}
   m_LocalRotation: {x: -0.18522799, y: 0.07195959, z: -0.009346527, w: 0.98001283}
   m_LocalPosition: {x: -0, y: 0.011107481, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1626490833264793496}
@@ -1404,6 +1404,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: slap
+  - Type: 9
+    SynchronizeType: 0
+    Name: fall
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

@@ -71,13 +71,11 @@ public class PlayerController : MonoBehaviour
                 //gameObject.transform.forward = move;
                 transform.Translate(0,0,input.y*movementSpeed*Time.deltaTime);
                 transform.Rotate(0,input.x*200*Time.deltaTime,0);
-                if(AnimatorIsPlaying("Run")) return;
                 anim.SetBool("run", true);
             }
             else
             {
                 anim.SetBool("run", false);
-
             }
 
 
@@ -142,6 +140,12 @@ public class PlayerController : MonoBehaviour
         {
             pV.RPC(nameof(SetStatus), RpcTarget.All, this.nickname);
         }
+
+        if (other.gameObject.CompareTag("FallZone"))
+        {
+            Debug.Log("fall zone girdim");
+            pV.RPC(nameof(SendFallZone), RpcTarget.All, this.nickname);
+        }
     }
 
     [PunRPC]
@@ -159,8 +163,17 @@ public class PlayerController : MonoBehaviour
                 UIManager.Instance.LoseScreen.SetActive(true);
             }
         }
+    }
 
+    [PunRPC]
+    public void SendFallZone(string nickname)
+    {
+        if (this.nickname == nickname)
+        {
+            Debug.Log("fall animasyonu oynattım");
 
+            anim.SetTrigger("fall");
+        }
     }
 
 }

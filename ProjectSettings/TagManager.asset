@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HitArea
   - DeadZone
+  - FallZone
   layers:
   - Default
   - TransparentFX

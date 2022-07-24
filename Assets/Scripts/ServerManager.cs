@@ -12,6 +12,7 @@ public class ServerManager : MonoBehaviourPunCallbacks
 
 
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private Material[] characterMaterials;
     [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
     private GameObject myPlayer;
     private string nickname;
@@ -80,7 +81,7 @@ public class ServerManager : MonoBehaviourPunCallbacks
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         int index = PhotonNetwork.LocalPlayer.ActorNumber % Constants.MAX_PLAYER;
         myPlayer = PhotonNetwork.Instantiate("player", spawnPoints[index].position, Quaternion.identity);
-
+        myPlayer.GetComponentInChildren<SkinnedMeshRenderer>().material = characterMaterials[index];
         PhotonNetwork.LocalPlayer.NickName = this.nickname;
         GameManager.Instance.myPlayer = myPlayer.GetComponent<PlayerController>();
         CameraManager.Instance.SetFollow(myPlayer);

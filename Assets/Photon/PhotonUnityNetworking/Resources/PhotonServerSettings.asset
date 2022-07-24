@@ -42,6 +42,7 @@ MonoBehaviour:
   - slap
   - SetStatus
   - EndGame
+  - SendFallZone
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
