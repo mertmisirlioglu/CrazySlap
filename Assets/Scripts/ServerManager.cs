@@ -26,8 +26,7 @@ public class ServerManager : MonoBehaviourPunCallbacks
     public void Connect()
     {
         this.nickname = _textMeshProUGUI.text;
-        UIManager.Instance.MainMenu.SetActive(false);
-        UIManager.Instance.Gameplay.SetActive(true);
+
         Debug.Log("my nickname is" + this.nickname);
         // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
         if (PhotonNetwork.IsConnected)
@@ -80,12 +79,15 @@ public class ServerManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         int index = PhotonNetwork.LocalPlayer.ActorNumber % Constants.MAX_PLAYER;
-        myPlayer = PhotonNetwork.Instantiate("player", spawnPoints[index].position, Quaternion.identity);
-        myPlayer.GetComponentInChildren<SkinnedMeshRenderer>().material = characterMaterials[index];
+        Debug.Log("player " + index);
+        myPlayer = PhotonNetwork.Instantiate("player " + index , spawnPoints[index].position, Quaternion.identity);
         PhotonNetwork.LocalPlayer.NickName = this.nickname;
         GameManager.Instance.myPlayer = myPlayer.GetComponent<PlayerController>();
         CameraManager.Instance.SetFollow(myPlayer);
         GameManager.Instance.UpdatePlayerList();
+
+        UIManager.Instance.MainMenu.SetActive(false);
+        UIManager.Instance.Gameplay.SetActive(true);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

@@ -1524,6 +1524,32 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 856452513}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &971061942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971061940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc398cf76e6d458caf303b5fceea504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Countdown: 180
+  Text: {fileID: 1170095670}
+--- !u!114 &1170095670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2988152998800263746, guid: 0c7751ba1c3474d9bafb7d65f8e2c0fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 856452513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1288918193 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 612593659918810647, guid: 49390c35c1831414e9c207d71ea08dd1,
@@ -2017,6 +2043,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5893789818175687571, guid: 49390c35c1831414e9c207d71ea08dd1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4169412273364503854, guid: 49390c35c1831414e9c207d71ea08dd1,
         type: 3}
       propertyPath: m_TagString
@@ -2026,6 +2057,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlatformRome01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887734006425323882, guid: 49390c35c1831414e9c207d71ea08dd1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342471248183401896, guid: 49390c35c1831414e9c207d71ea08dd1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445683249057969719, guid: 49390c35c1831414e9c207d71ea08dd1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874310946025834990, guid: 49390c35c1831414e9c207d71ea08dd1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7286547312837202342, guid: 49390c35c1831414e9c207d71ea08dd1,
         type: 3}
